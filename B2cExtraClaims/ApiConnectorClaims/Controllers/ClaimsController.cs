@@ -18,7 +18,7 @@ namespace ApiConnectorClaims.Controllers
         {
             string content = await new System.IO.StreamReader(Request.Body).ReadToEndAsync();
             var result = new ResponseContent();
-            result.Extension_CustomClaim = "everything awesome";
+            result.MyCustomClaim = "everything awesome";
             return Ok(result);
         }
     }
