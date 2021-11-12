@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace ApiConnectorClaims.Controllers
 {
@@ -16,9 +17,16 @@ namespace ApiConnectorClaims.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync()
         {
+            // TODO implement auth check
             string content = await new System.IO.StreamReader(Request.Body).ReadToEndAsync();
+            var requestConnector = JsonSerializer.Deserialize<RequestConnector>(content);
+
+            // TODO verify requestConnector
             var result = new ResponseContent();
-            result.MyCustomClaim = "everything awesome";
+
+            // use the objectId of the email to get the user specfic claims
+
+            result.MyCustomClaim = $"everything awesome {requestConnector.Email}";
             return Ok(result);
         }
     }
