@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.Identity.Web.UI;
+using System.IdentityModel.Tokens.Jwt;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,8 @@ builder.Services.AddRazorPages()
     .AddMicrosoftIdentityUI();
 
 var app = builder.Build();
+
+JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
 if (!app.Environment.IsDevelopment())
 {
