@@ -14,7 +14,7 @@ namespace B2cExtraClaims.Pages
 
         public void OnGet()
         {
-
+            var claims = User.Claims;
         }
     }
 }

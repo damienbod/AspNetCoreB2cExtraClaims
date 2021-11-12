@@ -1,4 +1,6 @@
-﻿namespace ApiConnectorClaims
+﻿using System.Text.Json.Serialization;
+
+namespace ApiConnectorClaims
 {
     public class ResponseContent
     {
@@ -21,13 +23,19 @@
             }
         }
 
+        [JsonPropertyName("version")]
         public string Version { get; }
+
+        [JsonPropertyName("action")]
         public string Action { get; set; }
 
+        [JsonPropertyName("userMessage")]
         public string? UserMessage { get; set; }
 
+        [JsonPropertyName("status")]
         public string? Status { get; set; }
 
+        [JsonPropertyName("extension_CustomClaim")]
         public string Extension_CustomClaim { get; set; }
     }
 }
