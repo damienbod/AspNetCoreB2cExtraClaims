@@ -36,16 +36,22 @@ namespace ApiConnectorClaims.Controllers
             // If input data is null, show block page
             if (requestConnector == null)
             {
-                return Ok(new ResponseContent("ShowBlockPage", "There was a problem with your request."));
+                return BadRequest(new ResponseContent("ShowBlockPage", "There was a problem with your request."));
+            }
+
+            string clientId = _configuration["AzureAdB2C:ClientId"];
+            if (!clientId.Equals(requestConnector.ClientId))
+            {
+                _logger.LogWarning("HTTP clientId is not authorized.");
+                return Unauthorized();
             }
 
             // If email claim not found, show block page. Email is required and sent by default.
             if (requestConnector.Email == null || requestConnector.Email == "" || requestConnector.Email.Contains("@") == false)
             {
-                return Ok(new ResponseContent("ShowBlockPage", "Email name is mandatory."));
+                return BadRequest(new ResponseContent("ShowBlockPage", "Email name is mandatory."));
             }
 
-            // TODO verify requestConnector
             var result = new ResponseContent
             {
                 // use the objectId of the email to get the user specfic claims
