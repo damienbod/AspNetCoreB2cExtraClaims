@@ -23,12 +23,19 @@ namespace ApiConnectorClaims.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync()
         {
-            // Check HTTP basic authorization
-            if (!IsAuthorized(Request))
+
+            var clientCertificate = HttpContext.Connection.ClientCertificate;
+            string clientCertFromHeader = Request.Headers["X-ARR-ClientCert"];
+            if (HttpContext.Connection.ClientCertificate == null)
             {
-                _logger.LogWarning("HTTP basic authentication validation failed.");
-                return Unauthorized();
+                var test = await HttpContext.Connection.GetClientCertificateAsync();
             }
+            // Check HTTP basic authorization
+            //if (!IsAuthorized(Request))
+            //{
+            //    _logger.LogWarning("HTTP basic authentication validation failed.");
+            //    return Unauthorized();
+            //}
 
             string content = await new System.IO.StreamReader(Request.Body).ReadToEndAsync();
             var requestConnector = JsonSerializer.Deserialize<RequestConnector>(content);
@@ -55,33 +62,33 @@ namespace ApiConnectorClaims.Controllers
             return Ok(result);
         }
 
-        private bool IsAuthorized(HttpRequest req)
-        {
-            string username = _configuration["BasicAuthUsername"];
-            string password = _configuration["BasicAuthPassword"];
+        //private bool IsAuthorized(HttpRequest req)
+        //{
+        //    string username = _configuration["BasicAuthUsername"];
+        //    string password = _configuration["BasicAuthPassword"];
 
-            // Check if the HTTP Authorization header exist
-            if (!req.Headers.ContainsKey("Authorization"))
-            {
-                _logger.LogWarning("Missing HTTP basic authentication header.");
-                return false;
-            }
+        //    // Check if the HTTP Authorization header exist
+        //    if (!req.Headers.ContainsKey("Authorization"))
+        //    {
+        //        _logger.LogWarning("Missing HTTP basic authentication header.");
+        //        return false;
+        //    }
 
-            // Read the authorization header
-            var auth = req.Headers["Authorization"].ToString();
+        //    // Read the authorization header
+        //    var auth = req.Headers["Authorization"].ToString();
 
-            // Ensure the type of the authorization header id `Basic`
-            if (!auth.StartsWith("Basic "))
-            {
-                _logger.LogWarning("HTTP basic authentication header must start with 'Basic '.");
-                return false;
-            }
+        //    // Ensure the type of the authorization header id `Basic`
+        //    if (!auth.StartsWith("Basic "))
+        //    {
+        //        _logger.LogWarning("HTTP basic authentication header must start with 'Basic '.");
+        //        return false;
+        //    }
 
-            // Get the the HTTP basinc authorization credentials
-            var cred = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(auth.Substring(6))).Split(':');
+        //    // Get the the HTTP basinc authorization credentials
+        //    var cred = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(auth.Substring(6))).Split(':');
 
-            // Evaluate the credentials and return the result
-            return (cred[0] == username && cred[1] == password);
-        }
+        //    // Evaluate the credentials and return the result
+        //    return (cred[0] == username && cred[1] == password);
+        //}
     }
 }

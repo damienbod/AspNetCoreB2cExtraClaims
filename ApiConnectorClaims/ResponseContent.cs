@@ -35,8 +35,7 @@ namespace ApiConnectorClaims
         [JsonPropertyName("status")]
         public string? Status { get; set; }
 
-        //[JsonPropertyName("extension_MyCustomClaim")]
         [JsonPropertyName("extension_MyCustomClaim")]
-        public string MyCustomClaim { get; set; }
+        public string MyCustomClaim { get; set; } = string.Empty;
     }
 }
