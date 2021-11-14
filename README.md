@@ -11,3 +11,5 @@ https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-
 https://damienbod.com/2020/09/04/securing-azure-functions-using-certificate-authentication/
 
 https://github.com/AzureAD/microsoft-identity-web/wiki
+
+https://ngrok.com/
