@@ -9,3 +9,5 @@ https://github.com/Azure-Samples/active-directory-dotnet-external-identities-api
 https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-customize-properties?pivots=dotnet-6-0
 
 https://damienbod.com/2020/09/04/securing-azure-functions-using-certificate-authentication/
+
+https://github.com/AzureAD/microsoft-identity-web/wiki
