@@ -59,8 +59,6 @@ builder.Host.UseSerilog((hostingContext, loggerConfiguration) => loggerConfigura
 
 var app = builder.Build();
 
-
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
