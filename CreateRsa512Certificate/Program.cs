@@ -1,5 +1,6 @@
 ﻿using CertificateManager;
 using CertificateManager.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace CreateIdentityServer4Certificates
         static CreateCertificates _cc;
         static void Main(string[] args)
         {
+            var builder = new ConfigurationBuilder()
+                .AddUserSecrets<Program>();
+            var configuration = builder.Build();
+
             var sp = new ServiceCollection()
                .AddCertificateManager()
                .BuildServiceProvider();
@@ -22,7 +27,7 @@ namespace CreateIdentityServer4Certificates
 
             var rsaCert = CreateRsaCertificateSha512KeySize2048("localhost", 10);
 
-            string password = "1234";
+            string password = configuration["certificateSecret"];
             var iec = sp.GetService<ImportExportCertificate>();
 
             var rsaCertPfxBytes = iec.ExportSelfSignedCertificatePfx(password, rsaCert);
