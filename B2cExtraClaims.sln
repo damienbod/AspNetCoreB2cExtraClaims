@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiConnectorClaims", "ApiConnectorClaims\ApiConnectorClaims.csproj", "{FA1C0279-C76F-4D99-9399-FCA3B72EE428}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureCertAuthClientConsole", "AzureCertAuthClientConsole\AzureCertAuthClientConsole.csproj", "{1761D5AE-C4E4-4DFA-8F11-C3828333921B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTestApiConnectorClaimsCertClient", "AzureCertAuthClientConsole\ConsoleTestApiConnectorClaimsCertClient.csproj", "{1761D5AE-C4E4-4DFA-8F11-C3828333921B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateRsa512Certificate", "CreateRsa512Certificate\CreateRsa512Certificate.csproj", "{6C8D3DCA-E562-4373-9587-7E6BF0142AA6}"
 EndProject
