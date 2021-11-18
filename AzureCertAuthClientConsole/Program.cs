@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
+using System;
 using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
@@ -18,7 +19,11 @@ namespace AzureCertAuthClientConsole
 
         private static async Task<string> GetApiDataUsingHttpClientHandler()
         {
-            var cert = new X509Certificate2("client.pfx", "1234");
+            var builder = new ConfigurationBuilder()
+                .AddUserSecrets<Program>();
+            var configuration = builder.Build();
+
+            var cert = new X509Certificate2("client.pfx", configuration["certificateSecret"]);
             var handler = new HttpClientHandler();
             handler.ClientCertificates.Add(cert);
             var client = new HttpClient(handler);
