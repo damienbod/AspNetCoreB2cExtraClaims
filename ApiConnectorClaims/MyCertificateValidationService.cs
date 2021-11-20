@@ -21,7 +21,7 @@ namespace ApiConnectorClaims
             var listOfValidThumbprints = new List<string>
             {
                 // add thumprints of your allowed clients
-                "15D118271F9AE7855778A2E6A00A575341D3D904"
+                "33CB462939C8CFC38CAE208D3DDB63C24B888050"
             };
 
             if (listOfValidThumbprints.Contains(clientCertificate.Thumbprint))
