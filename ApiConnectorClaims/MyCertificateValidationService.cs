@@ -20,7 +20,7 @@ namespace ApiConnectorClaims
         {
             var listOfValidThumbprints = new List<string>
             {
-                // add thumprints of your allowed clients
+                // add thumbprints of your allowed clients
                 "33CB462939C8CFC38CAE208D3DDB63C24B888050"
             };
 
