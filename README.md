@@ -21,3 +21,5 @@ https://damienbod.com/2020/09/04/securing-azure-functions-using-certificate-auth
 https://github.com/AzureAD/microsoft-identity-web/wiki
 
 https://ngrok.com/
+
+https://github.com/damienbod/azureb2c-fed-azuread
