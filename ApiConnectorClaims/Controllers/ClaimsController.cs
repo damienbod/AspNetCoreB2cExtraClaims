@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 
@@ -13,24 +14,36 @@ namespace ApiConnectorClaims.Controllers
     {
         private readonly ILogger<ClaimsController> _logger;
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
 
-        public ClaimsController(ILogger<ClaimsController> logger, IConfiguration configuration)
+        public ClaimsController(ILogger<ClaimsController> logger, IConfiguration configuration, IWebHostEnvironment env)
         {
             _logger = logger;
             _configuration = configuration;
+            _env = env;
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok("Azure B2C API connector");
         }
 
         [HttpPost]
         public async Task<IActionResult> PostAsync()
         {
-            // Check HTTP basic authorization
-            if (!IsAuthorized(Request))
+            if(_env.IsDevelopment()) // deployment uses certificate auth
             {
-                _logger.LogWarning("HTTP basic authentication validation failed.");
-                return Unauthorized();
+                // Check HTTP basic authorization
+                if (!IsAuthorizedUsingUnsecureBasicAuth(Request))
+                {
+                    _logger.LogWarning("HTTP basic authentication validation failed.");
+                    return Unauthorized();
+                }
             }
 
             string content = await new System.IO.StreamReader(Request.Body).ReadToEndAsync();
+            _logger.LogInformation(content);
             var requestConnector = JsonSerializer.Deserialize<RequestConnector>(content);
 
             // If input data is null, show block page
@@ -61,7 +74,7 @@ namespace ApiConnectorClaims.Controllers
             return Ok(result);
         }
 
-        private bool IsAuthorized(HttpRequest req)
+        private bool IsAuthorizedUsingUnsecureBasicAuth(HttpRequest req)
         {
             string username = _configuration["BasicAuthUsername"];
             string password = _configuration["BasicAuthPassword"];
