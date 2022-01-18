@@ -6,6 +6,10 @@
 
 [Implement certificate authentication in ASP.NET Core for an Azure B2C API connector](https://damienbod.com/2021/11/22/implement-certificate-authentication-in-asp-net-core-for-an-azure-b2c-api-connector/)
 
+## History
+
+2022-01-18 Updated packages
+
 ## Links
 
 https://docs.microsoft.com/en-us/azure/active-directory-b2c/api-connectors-overview?pivots=b2c-user-flow
