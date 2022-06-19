@@ -1,6 +1,6 @@
 [![.NET](https://github.com/damienbod/AspNetCoreB2cExtraClaims/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/AspNetCoreB2cExtraClaims/actions/workflows/dotnet.yml)
 
-# ASP.NET Core B2C with extra claims
+# ASP.NET Core Azure AD B2C with extra claims
 
 [Add extra claims to an Azure B2C user flow using API connectors and ASP.NET Core](https://damienbod.com/2021/11/15/add-extra-claims-to-an-azure-b2c-user-flow-using-api-connectors/)
 
