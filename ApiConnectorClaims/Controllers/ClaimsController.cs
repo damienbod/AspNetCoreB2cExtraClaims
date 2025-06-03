@@ -31,7 +31,7 @@ public class ClaimsController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> PostAsync()
     {
-        if(_env.IsDevelopment()) // deployment uses certificate auth
+        if (_env.IsDevelopment()) // deployment uses certificate auth
         {
             // Check HTTP basic authorization
             if (!IsAuthorizedUsingUnsecureBasicAuth(Request))

@@ -78,7 +78,7 @@ class Program
             enhancedKeyUsages,
             x509KeyUsageFlags,
             new RsaConfiguration
-            { 
+            {
                 KeySize = 3072,
                 HashAlgorithmName = HashAlgorithmName.SHA512
             });
