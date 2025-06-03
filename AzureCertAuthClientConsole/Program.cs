@@ -23,7 +23,7 @@ class Program
             .AddUserSecrets<Program>();
         var configuration = builder.Build();
 
-        var cert = new X509Certificate2("client.pfx", configuration["certificateSecret"]);
+        var cert = X509CertificateLoader.LoadPkcs12FromFile("client.pfx", configuration["certificateSecret"]);
         var handler = new HttpClientHandler();
         handler.ClientCertificates.Add(cert);
         var client = new HttpClient(handler);
