@@ -51,7 +51,7 @@ public class ClaimsController : ControllerBase
             return BadRequest(new ResponseContent("ShowBlockPage", "There was a problem with your request."));
         }
 
-        string clientId = _configuration["AzureAdB2C:ClientId"];
+        string clientId = _configuration["AzureAdB2C:ClientId"]!;
         if (!clientId.Equals(requestConnector.ClientId))
         {
             _logger.LogWarning("HTTP clientId is not authorized.");
@@ -66,7 +66,7 @@ public class ClaimsController : ControllerBase
 
         var result = new ResponseContent
         {
-            // use the objectId of the email to get the user specfic claims
+            // use the objectId of the email to get the user specific claims
             MyCustomClaim = $"everything awesome {requestConnector.Email}"
         };
 
@@ -75,8 +75,8 @@ public class ClaimsController : ControllerBase
 
     private bool IsAuthorizedUsingUnsecureBasicAuth(HttpRequest req)
     {
-        string username = _configuration["BasicAuthUsername"];
-        string password = _configuration["BasicAuthPassword"];
+        string username = _configuration["BasicAuthUsername"]!;
+        string password = _configuration["BasicAuthPassword"]!;
 
         // Check if the HTTP Authorization header exist
         if (!req.Headers.ContainsKey("Authorization"))
@@ -95,7 +95,7 @@ public class ClaimsController : ControllerBase
             return false;
         }
 
-        // Get the the HTTP basinc authorization credentials
+        // Get the the HTTP basic authorization credentials
         var cred = System.Text.Encoding.UTF8.GetString(Convert.FromBase64String(auth.Substring(6))).Split(':');
 
         // Evaluate the credentials and return the result
