@@ -22,7 +22,7 @@ https://docs.microsoft.com/en-us/azure/active-directory-b2c/
 
 https://github.com/Azure-Samples/active-directory-dotnet-external-identities-api-connector-azure-function-validate/
 
-https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-customize-properties?pivots=dotnet-6-0
+https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-customize-properties
 
 https://damienbod.com/2020/09/04/securing-azure-functions-using-certificate-authentication/
 
