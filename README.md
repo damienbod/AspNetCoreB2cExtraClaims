@@ -8,7 +8,7 @@
 
 ## History
 
-- updated packages, fixed project type
+- 2025-07-06 updated packages, fixed project type
 - 2025-06-03 .NET 9, Updated packages
 - 2023-08-13 Updated packages
 - 2022-12-18 Updated packages to .NET 7
